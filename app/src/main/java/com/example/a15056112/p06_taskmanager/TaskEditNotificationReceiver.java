@@ -9,9 +9,8 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 
-public class TaskScheduledNotificationReceiver extends BroadcastReceiver {
-    int reqCode = 12345;
-
+public class TaskEditNotificationReceiver extends BroadcastReceiver {
+    int reqCode = 123456;
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, MainActivity.class);
@@ -22,7 +21,7 @@ public class TaskScheduledNotificationReceiver extends BroadcastReceiver {
         // build notification
         Notification.Builder builder = new Notification.Builder(context);
         builder.setContentTitle(intent.getStringExtra("noti"));
-        builder.setContentText(intent.getStringExtra("notiText") + " added");
+        builder.setContentText(intent.getStringExtra("notiText") + " edited");
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
         builder.setAutoCancel(true);
@@ -31,6 +30,6 @@ public class TaskScheduledNotificationReceiver extends BroadcastReceiver {
         Notification n = builder.build();
         NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(123, n);
+        notificationManager.notify(1234, n);
     }
 }

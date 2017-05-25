@@ -23,7 +23,16 @@
             android:exported="true" />
 
         <activity android:name=".AddActivity" />
-        <activity android:name=".EditDeleteActivity"></activity>
+        <activity android:name=".EditDeleteActivity" />
+
+        <receiver
+            android:name=".TaskEditNotificationReceiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".TaskDeleteNotificationReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>
