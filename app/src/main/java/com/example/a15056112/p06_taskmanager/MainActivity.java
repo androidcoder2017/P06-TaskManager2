@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alTask);
         alTask.clear();
         for (int i = 0; i < db.getAllTasks().size(); i++){
-            alTask.add(db.getAllTasks().get(i).getName() + "\n" + db.getAllTasks().get(i).getDescription());
+            alTask.add(db.getAllTasks().get(i).getId() + " " + db.getAllTasks().get(i).getName() + "\n" + db.getAllTasks().get(i).getDescription());
         }
 
         lv.setAdapter(aa);
