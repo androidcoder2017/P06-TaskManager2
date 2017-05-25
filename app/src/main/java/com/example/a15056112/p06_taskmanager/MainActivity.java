@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             DBHelper db = new DBHelper(MainActivity.this);
             alTask.clear();
             for (int i = 0; i < db.getAllTasks().size(); i++){
-                alTask.add(db.getAllTasks().get(i).getName() + "\n" + db.getAllTasks().get(i).getDescription());
+                alTask.add(db.getAllTasks().get(i).getId() + " " + db.getAllTasks().get(i).getName() + "\n" + db.getAllTasks().get(i).getDescription());
         }
 
             lv.setAdapter(aa);
