@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = (Button)findViewById(R.id.btnAdd);
         alTask = new ArrayList<String>();
 
-        DBHelper db = new DBHelper(MainActivity.this);
+        final DBHelper db = new DBHelper(MainActivity.this);
         db.getAllTasks();
 
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alTask);
@@ -38,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         lv.setAdapter(aa);
         aa.notifyDataSetChanged();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(MainActivity.this, EditDeleteActivity.class);
+
+                Task target = new Task(db.getAllTasks().get(position).getId(),db.getAllTasks().get(position).getName(), db.getAllTasks().get(position).getDescription());
+                i.putExtra("data", target);
+                startActivityForResult(i, requestCodes);
+
+            }
+        });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
             lv.setAdapter(aa);
             aa.notifyDataSetChanged();
+
+
         }
 
     }
